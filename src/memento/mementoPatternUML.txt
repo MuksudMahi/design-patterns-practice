@@ -1,15 +1,45 @@
-+-------------------+       +------------------+       +----------------------+
-| Originator        |       | Memento          |       | Caretaker            |
-+-------------------+       +------------------+       +----------------------+
-| - state: String   |       | + state: String  |       | - mementoList: List  |
-+-------------------+       +------------------+       +----------------------+
-| + setState(state: |       |                  |       |                      |
-|   String): void   |       |                  |       | + add(memento: Memen-|
-| + getState():     |       |                  |       |   to): void          |
-|   String          |       |                  |       |                      |
-| + saveStateToMeme-|       |                  |       | + get(index: int):   |
-|   nto(): Memento  |       |                  |       |   Memento            |
-| + getStateFromMem-|       |                  |       |                      |
-|   nto(memento: Me-|       |                  |       |                      |
-|   mento): void    |       |                  |       |                      |
-+-------------------+       +------------------+       +----------------------+
++--------------------+             +--------------------+
+|     Originator     |<>---------->|       Memento      |
++--------------------+             +--------------------+
+| - state: State     |             | - state: State     |
++--------------------+             +--------------------+
+| + setState(state)  |             | + getState(): State|
+| + getState(): State|             +--------------------+
+| + saveState():     |                    ^
+|     Memento        |                    |
+| + restoreState(m): |                    |
+|     void           |             +--------------------+
++--------------------+             |     Caretaker      |
+                                   +--------------------+
+                                   | - mementoList: List|
+                                   +--------------------+
+                                   | + addMemento(m):   |
+                                   |     void           |
+                                   | + getMemento(i):   |
+                                   |     Memento        |
+                                   +--------------------+
+
+Key Components and Relationships
+1. Originator
+   * Role: The object whose state needs to be saved and restored.
+   * Responsibilities:
+      * Creates a Memento containing a snapshot of its current internal state.
+      * Uses the Memento to restore its internal state.
+   * Relationship:
+      * Aggregation with Memento: The Originator creates and uses Mementos.
+2. Memento
+   * Role: Stores the internal state of the Originator.
+   * Responsibilities:
+      * Keeps the state of the Originator confidential.
+      * Provides the stored state back to the Originator when requested.
+   * Relationship:
+      * Aggregation from Caretaker: The Caretaker holds and manages Mementos.
+      * Association with Originator: Mementos are created and utilized by the Originator.
+3. Caretaker
+   * Role: Manages the Mementos for the Originator.
+   * Responsibilities:
+      * Stores Mementos.
+      * Retrieves Mementos upon request.
+      * Does not modify or examine the contents of Mementos.
+   * Relationship:
+      * Aggregation with Memento: Holds references to Mementos but doesn't alter them.
