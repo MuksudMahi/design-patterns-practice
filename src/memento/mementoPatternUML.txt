@@ -1,0 +1,15 @@
++-------------------+       +------------------+       +----------------------+
+| Originator        |       | Memento          |       | Caretaker            |
++-------------------+       +------------------+       +----------------------+
+| - state: String   |       | + state: String  |       | - mementoList: List  |
++-------------------+       +------------------+       +----------------------+
+| + setState(state: |       |                  |       |                      |
+|   String): void   |       |                  |       | + add(memento: Memen-|
+| + getState():     |       |                  |       |   to): void          |
+|   String          |       |                  |       |                      |
+| + saveStateToMeme-|       |                  |       | + get(index: int):   |
+|   nto(): Memento  |       |                  |       |   Memento            |
+| + getStateFromMem-|       |                  |       |                      |
+|   nto(memento: Me-|       |                  |       |                      |
+|   mento): void    |       |                  |       |                      |
++-------------------+       +------------------+       +----------------------+
