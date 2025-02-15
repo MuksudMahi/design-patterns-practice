@@ -1,0 +1,43 @@
+            +------------------------+
+            |        Invoker         |
+            |------------------------|
+            | - behavioral.command: Command     |
+            |------------------------|
+            | + setCommand(cmd: Cmd) |
+            | + invoke(): void       |
+            +------------------------+
+                       |
+                       v
+                +------------------+
+                |     Command      |
+                |------------------|
+                | + execute(): void|
+                +------------------+
+                   ^         ^
+                   |         |
++---------------------+   +---------------------+
+|  ConcreteCommand1   |   |  ConcreteCommand2   |
+|---------------------|   |---------------------|
+| - receiver: Receiver|   | - receiver: Receiver|
+|---------------------|   |---------------------|
+| + execute(): void   |   | + execute(): void   |
++---------------------+   +---------------------+
+                   |         |
+                   v         v
+            +-------------------+
+            |     Receiver      |
+            |-------------------|
+            | + action1(): void |
+            | + action2(): void |
+            +-------------------+
+
+
+
+Inheritance (Generalization):
+* ConcreteCommand1 and ConcreteCommand2 inherit from the Command interface.
+Association:
+* Both ConcreteCommand1 and ConcreteCommand2 hold a reference to Receiver.
+* Invoker holds a reference to a Command.
+Invocation:
+* Invoker calls setCommand() to assign a behavioral.command and invoke() to execute it.
+* ConcreteCommand objects delegate execution to the Receiver.

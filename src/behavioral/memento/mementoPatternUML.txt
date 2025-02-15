@@ -1,0 +1,45 @@
++--------------------+             +--------------------+
+|     Originator     |<>---------->|       Memento      |
++--------------------+             +--------------------+
+| - behavioral.state: State     |             | - behavioral.state: State     |
++--------------------+             +--------------------+
+| + setState(behavioral.state)  |             | + getState(): State|
+| + getState(): State|             +--------------------+
+| + saveState():     |                    ^
+|     Memento        |                    |
+| + restoreState(m): |                    |
+|     void           |             +--------------------+
++--------------------+             |     Caretaker      |
+                                   +--------------------+
+                                   | - mementoList: List|
+                                   +--------------------+
+                                   | + addMemento(m):   |
+                                   |     void           |
+                                   | + getMemento(i):   |
+                                   |     Memento        |
+                                   +--------------------+
+
+Key Components and Relationships
+1. Originator
+   * Role: The object whose behavioral.state needs to be saved and restored.
+   * Responsibilities:
+      * Creates a Memento containing a snapshot of its current internal behavioral.state.
+      * Uses the Memento to restore its internal behavioral.state.
+   * Relationship:
+      * Aggregation with Memento: The Originator creates and uses Mementos.
+2. Memento
+   * Role: Stores the internal behavioral.state of the Originator.
+   * Responsibilities:
+      * Keeps the behavioral.state of the Originator confidential.
+      * Provides the stored behavioral.state back to the Originator when requested.
+   * Relationship:
+      * Aggregation from Caretaker: The Caretaker holds and manages Mementos.
+      * Association with Originator: Mementos are created and utilized by the Originator.
+3. Caretaker
+   * Role: Manages the Mementos for the Originator.
+   * Responsibilities:
+      * Stores Mementos.
+      * Retrieves Mementos upon request.
+      * Does not modify or examine the contents of Mementos.
+   * Relationship:
+      * Aggregation with Memento: Holds references to Mementos but doesn't alter them.

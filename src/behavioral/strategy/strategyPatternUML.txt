@@ -1,0 +1,69 @@
++--------------------------+
+|        Context           |
++--------------------------+
+| - behavioral.strategy: Strategy     |
++--------------------------+
+| + setStrategy(s:Strategy)|
+| + executeStrategy()      |
++--------------------------+
+           |
+   uses    |
+           v
++-------------------------+
+|        Strategy         |  <<interface>>
++-------------------------+
+| + execute(): void       |
++-------------------------+
+          ^
+          |
+          | implements
+          |
+  +--------------------+      +---------------------+      +--------------------+
+  |  ConcreteStrategyA |      |  ConcreteStrategyB  |      |  ConcreteStrategyC |
+  +--------------------+      +---------------------+      +--------------------+
+  |                    |      |                     |      |                    |
+  | + execute(): void  |      | + execute(): void   |      | + execute(): void  |
+  +--------------------+      +---------------------+      +--------------------+
+
+
+Explanation of the Diagram:
+1. Context Class:
+   * Name: Context
+   * Attributes:
+      * - behavioral.strategy: Strategy — The context maintains a reference to a Strategy object.
+   * Methods:
+      * + setStrategy(s: Strategy) — Allows changing the behavioral.strategy at runtime.
+      * + executeStrategy() — Calls the execute() method of the current behavioral.strategy.
+2. Strategy Interface:
+   * Name: Strategy (denoted with <<interface>> to indicate it's an interface)
+   * Methods:
+      * + execute(): void — The operation that all concrete strategies will implement.
+3. Concrete Strategies:
+   * ConcreteStrategyA
+      * Implements Strategy.
+      * Provides a specific implementation of execute().
+   * ConcreteStrategyB
+      * Implements Strategy.
+      * Offers a different implementation of execute().
+   * ConcreteStrategyC
+      * Implements Strategy.
+      * Yet another implementation of execute().
+Relationships:
+* Context uses Strategy:
+   * The Context class holds a reference to a Strategy object.
+   * It delegates the call to the behavioral.strategy's execute() method inside executeStrategy().
+* Concrete Strategies implement Strategy:
+   * Each ConcreteStrategy class implements the Strategy interface.
+   * They provide specific behaviors for the execute() method.
+Understanding the Strategy Pattern:
+Purpose:
+The Strategy Pattern enables selecting an algorithm's behavior at runtime. It defines a family of algorithms, encapsulates each one, and makes them interchangeable within that family.
+Real-World Metaphor:
+Imagine you're navigating a city:
+* Context: You, needing to get from point A to point B.
+* Strategy Interface: The mode of transportation.
+* Concrete Strategies:
+   * ConcreteStrategyA: Walking.
+   * ConcreteStrategyB: Driving.
+   * ConcreteStrategyC: Bicycling.
+Depending on various factors (time, weather, distance), you can change your mode of transportation dynamically without altering your primary goal: reaching your destination.

@@ -1,0 +1,37 @@
++------------------+           +------------------+
+|     Context      |           |      State       |
++------------------+           +------------------+
+| - behavioral.state: State   |<>-------> | + handle(): void |
++------------------+           +------------------+
+| + request(): void|           +------------------+
++------------------+                   ^
+                                       |
+                 +---------------------+---------------------+
+                 |                                           |
+     +--------------------+                     +--------------------+
+     |  ConcreteStateA    |                     |  ConcreteStateB    |
+     +--------------------+                     +--------------------+
+     | + handle(): void   |                     | + handle(): void   |
+     +--------------------+                     +--------------------+
+
+Explanation:
+* Context:
+   * Holds a reference to a State object (- behavioral.state: State).
+   * Implements a method request() which delegates the action to the current behavioral.state's handle() method.
+* State:
+   * An interface declaring the handle() method.
+* ConcreteStateA and ConcreteStateB:
+   * Implement the State interface.
+   * Provide specific behaviors for the handle() method.
+UML Relationships:
+* The Context has an association (<>------->) with the State interface, meaning it holds a reference to a State object.
+* ConcreteStateA and ConcreteStateB have inheritance relationships (^) with the State interface, indicating they implement the State interface.
+How It Works:
+1. Context starts with a default State.
+2. When request() is called on the Context, it invokes handle() on its current State object.
+3. The current State defines the behavior that occurs in response to the request().
+4. The State can optionally change the Context's behavioral.state to a different ConcreteState, altering future behavior.
+Visual Representation:
+* The arrows represent relationships:
+   * The open diamond arrow (<>------->) from Context to State signifies aggregation (Context contains a State).
+   * The open triangle arrows (^) from ConcreteStateA and ConcreteStateB to State signify realization (they implement the State interface).

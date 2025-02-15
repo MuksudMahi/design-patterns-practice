@@ -1,0 +1,94 @@
+             +---------------------------+
+             |          Iterator         |
+             +---------------------------+
+             | + first()                 |
+             | + next()                  |
+             | + isDone() : Boolean      |
+             | + currentItem() : Object  |
+             +---------------------------+
+                        ^
+                        |
+              implements|
+                        |
+             +---------------------------+
+             |      ConcreteIterator     |
+             +---------------------------+
+             | - aggregate : Aggregate   |
+             | - currentIndex : Integer  |
+             +---------------------------+
+             | + first()                 |
+             | + next()                  |
+             | + isDone() : Boolean      |
+             | + currentItem() : Object  |
+             +---------------------------+
+                        |
+            references  |
+                        v
+             +---------------------------+
+             |          Aggregate        |
+             +---------------------------+
+             | + createIterator()        |
+             |     : Iterator            |
+             +---------------------------+
+                        ^
+                        |
+              implements|
+                        |
+             +---------------------------+
+             |      ConcreteAggregate    |
+             +---------------------------+
+             | - items : Object[]        |
+             +---------------------------+
+             | + createIterator()        |
+             |     : Iterator            |
+             +---------------------------+
+
+Explanation of the Diagram:
+1. Iterator Interface
+   * Name: Iterator
+   * Operations:
+      * + first()
+      * + next()
+      * + isDone() : Boolean
+      * + currentItem() : Object
+2. ConcreteIterator Class
+   * Name: ConcreteIterator
+   * Attributes:
+      * - aggregate : Aggregate
+      * - currentIndex : Integer
+   * Operations:
+      * + first()
+      * + next()
+      * + isDone() : Boolean
+      * + currentItem() : Object
+   * Relationships:
+      * Implements the Iterator interface.
+      * References the Aggregate it traverses.
+3. Aggregate Interface
+   * Name: Aggregate
+   * Operations:
+      * + createIterator() : Iterator
+4. ConcreteAggregate Class
+   * Name: ConcreteAggregate
+   * Attributes:
+      * - items : Object[]
+   * Operations:
+      * + createIterator() : Iterator
+   * Relationships:
+      * Implements the Aggregate interface.
+      * Creates instances of ConcreteIterator.
+Understanding the Relationships:
+* Inheritance (Implements):
+   * ConcreteIterator implements the Iterator interface.
+      * Denoted by a solid line with an open arrowhead pointing from ConcreteIterator to Iterator.
+   * ConcreteAggregate implements the Aggregate interface.
+      * Denoted similarly.
+* Association (References):
+   * ConcreteIterator references Aggregate.
+      * Holds a reference to the Aggregate it is iterating over (- aggregate : Aggregate).
+      * Denoted by a solid line connecting ConcreteIterator to Aggregate, labeled "references".
+* Creation:
+   * ConcreteAggregate creates ConcreteIterator.
+      * Through its method createIterator().
+      * This relationship is implied in the method and can be denoted by a dashed line or explained in the textual description.
+   *

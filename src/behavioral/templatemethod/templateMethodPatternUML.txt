@@ -1,0 +1,29 @@
+       +-------------------------------------+
+       |             AbstractClass           |
+       +-------------------------------------+
+       | - templateMethod()                  |  <-- Defines the algorithm's skeleton
+       |                                     |
+       | - primitiveOperation1()  «abstract» |
+       | - primitiveOperation2()  «abstract» |
+       +-------------------------------------+
+                       ▲
+                       |
+           +--------------------------+
+           |       ConcreteClass      |
+           +--------------------------+
+           | - primitiveOperation1()  | <-- Implements specific steps
+           | - primitiveOperation2()  |
+           +--------------------------+
+
+In this diagram:
+* AbstractClass:
+   * Contains the templateMethod(), which outlines the skeleton of an algorithm. This method is final and shouldn't be overridden.
+   * Declares abstract operations (primitiveOperation1(), primitiveOperation2()) that subclasses will implement.
+* ConcreteClass:
+   * Implements the abstract operations, providing specific behaviors that will vary between subclasses.
+Explanation and Metaphor:
+Imagine you're following a cherished family recipe—AbstractClass is like that recipe. It lays out the steps you must follow to create the dish, ensuring consistency every time. However, some ingredients are left unspecified; these are the primitiveOperations that you, the chef (ConcreteClass), get to define. Perhaps you choose the type of cheese or the blend of spices, injecting your personal touch while adhering to the beloved recipe's structure.
+Key Points:
+* Reuse of Invariant Behavior: The templateMethod() ensures the algorithm's structure remains unchanged across subclasses.
+* Flexibility: Subclasses can vary certain steps without altering the algorithm's overall flow.
+* Encapsulation of Common Behavior: Shared code resides in the abstract class, reducing duplication.
